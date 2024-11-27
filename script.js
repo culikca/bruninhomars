@@ -1,15 +1,16 @@
-const suits = ["♦", "♥", "♠", "♣"];
-const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+// Cores e números disponíveis
+const colors = ["red", "green", "blue", "yellow"];
+const numbers = Array.from({ length: 10 }, (_, i) => i.toString());
 
 // Função para criar um baralho
 function createDeck() {
     const deck = [];
-    for (const suit of suits) {
-        for (const rank of ranks) {
-            deck.push({ suit, rank });
+    for (const color of colors) {
+        for (const number of numbers) {
+            deck.push({ color, number });
         }
     }
-    return deck;
+    return shuffle(deck);
 }
 
 // Função para embaralhar o baralho
@@ -21,30 +22,58 @@ function shuffle(deck) {
     return deck;
 }
 
-// Função para lidar as cartas
-function dealCards(deck) {
-    const playerHand = deck.slice(0, 5);
-    const dealerHand = deck.slice(5, 10);
-    return { playerHand, dealerHand };
+// Função para exibir uma carta
+function createCardElement(card) {
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("card", card.color);
+    cardElement.textContent = card.number;
+    return cardElement;
 }
 
-// Função para mostrar as cartas na tela
-function displayCards(hand, elementId) {
-    const handElement = document.getElementById(elementId);
-    handElement.innerHTML = ""; // Limpa as cartas anteriores
-    hand.forEach(card => {
-        const cardElement = document.createElement("div");
-        cardElement.className = "card";
-        cardElement.innerText = {card.rank}{card.suit};
+// Inicia o jogo
+let deck = createDeck();
+let currentCard = deck.pop(); // A carta inicial
+let playerHand = [];
+
+// Atualiza a carta atual na mesa
+function updateCurrentCard() {
+    const currentCardElement = document.getElementById("currentCard");
+    currentCardElement.innerHTML = "";
+    currentCardElement.appendChild(createCardElement(currentCard));
+}
+
+// Atualiza a mão do jogador
+function updatePlayerHand() {
+    const handElement = document.getElementById("hand");
+    handElement.innerHTML = "";
+
+    playerHand.forEach((card, index) => {
+        const cardElement = createCardElement(card);
+        cardElement.addEventListener("click", () => {
+            if (card.color === currentCard.color || card.number === currentCard.number) {
+                currentCard = card;
+                playerHand.splice(index, 1);
+                updateCurrentCard();
+                updatePlayerHand();
+            } else {
+                alert("Carta inválida! Escolha uma carta que corresponda à cor ou ao número.");
+            }
+        });
         handElement.appendChild(cardElement);
     });
 }
 
-// Inicializa o jogo
-document.getElementById("dealButton").addEventListener("click", () => {
-    const deck = shuffle(createDeck());
-    const { playerHand, dealerHand } = dealCards(deck);
-
-    displayCards(playerHand, "playerCards");
-    displayCards(dealerHand, "dealerCards");
+// Quando o jogador puxa uma carta
+document.getElementById("drawCard").addEventListener("click", () => {
+    if (deck.length > 0) {
+        playerHand.push(deck.pop());
+        updatePlayerHand();
+    } else {
+        alert("Não há mais cartas no baralho!");
+    }
 });
+
+// Inicializa o estado do jogo
+playerHand = deck.splice(0, 7); // Dá 7 cartas ao jogador
+updateCurrentCard();
+updatePlayerHand();
