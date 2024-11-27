@@ -35,7 +35,7 @@ function displayCards(hand, elementId) {
     hand.forEach(card => {
         const cardElement = document.createElement("div");
         cardElement.className = "card";
-        cardElement.innerText = ${card.rank}${card.suit};
+        cardElement.innerText = {card.rank}{card.suit};
         handElement.appendChild(cardElement);
     });
 }
