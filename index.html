@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Poker Responsivo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Jogo de Cartas - Uno</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Jogo de Poker</h1>
+        <h1>Jogo de Cartas Estilo Uno</h1>
     </header>
     <main>
-        <div id="game">
-            <button id="dealButton">Distribuir Cartas</button>
-            <div class="hands-container">
-                <div id="playerHand" class="hand">
-                    <h2>Mão do Jogador</h2>
-                    <div id="playerCards" class="cards"></div>
-                </div>
-                <div id="dealerHand" class="hand">
-                    <h2>Mão do Dealer</h2>
-                    <div id="dealerCards" class="cards"></div>
-                </div>
+        <div id="game-board">
+            <div id="deck">
+                <button id="drawCard">Puxar Carta</button>
+            </div>
+            <div id="played-cards">
+                <h2>Carta Atual:</h2>
+                <div id="currentCard"></div>
+            </div>
+            <div id="player-hand">
+                <h2>Sua Mão:</h2>
+                <div id="hand"></div>
             </div>
         </div>
     </main>
     <footer>
-        <p>Desenvolvido para mobile e desktop</p>
+        <p>Desenvolvido para aprendizado</p>
     </footer>
     <script src="script.js"></script>
 </body>
-</html>
+</html>>
 

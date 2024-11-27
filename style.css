@@ -1,121 +1,33 @@
-/* Geral */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: #fff;
-    background-color: #444;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
-
-header, footer {
-    text-align: center;
-    width: 100%;
-    background-color: #222;
-    padding: 15px 0;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2rem;
-    color: #ffcc00;
-}
-
-footer p {
-    font-size: 0.9rem;
-    color: #aaa;
-}
-
-main {
-    flex: 1;
-    width: 90%;
-    max-width: 800px;
-    margin-top: 20px;
-}
-
-#game {
-    text-align: center;
-}
-
-button {
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    background-color: #ffcc00;
-    border: none;
-    border-radius: 5px;
-    color: #222;
-    cursor: pointer;
-    margin-bottom: 20px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #ffaa00;
-}
-
-/* Mãos */
-.hands-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.hand {
-    background: #333;
-    padding: 10px;
-    border-radius: 8px;
-    flex: 1 1 300px;
-    text-align: center;
-}
-
-.hand h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-/* Estilo das cartas */
-.card {
-    width: 60px;
-    height: 90px;
-    background-color: #fff;
-    color: #000;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.3rem;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: scale(1.1);
-}
-
-/* Responsividade */
-@media (max-width: 600px) {
-    button {
-        font-size: 1rem;
-    }
-
-    .card {
-        width: 50px;
-        height: 75px;
-        font-size: 1rem;
-    }
-
-    .hand h2 {
-        font-size: 1.2rem;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Cartas - Uno</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Jogo de Cartas Estilo Uno</h1>
+    </header>
+    <main>
+        <div id="game-board">
+            <div id="deck">
+                <button id="drawCard">Puxar Carta</button>
+            </div>
+            <div id="played-cards">
+                <h2>Carta Atual:</h2>
+                <div id="currentCard"></div>
+            </div>
+            <div id="player-hand">
+                <h2>Sua Mão:</h2>
+                <div id="hand"></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Desenvolvido para aprendizado</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
